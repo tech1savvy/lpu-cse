@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+struct link
+{
+    int data;
+    struct link *next;
+    struct link *prev;
+};
+struct link *start=NULL;
+struct link *current;
+struct link *node;
+void create()
+{
+    int n;
+    cout<<"How many nodes u want to create ";
+    cin>>n;
+    cout<<"Enter all Elements ";
+    for(int i=0;i<n;i++)
+    {
+        node=(struct link *)malloc(sizeof(struct link));
+        cin>>node->data;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+            node->next=start;
+            node->prev=start;
+        }
+        else
+        {
+            current->next=node;
+            node->prev=current;
+            node->next=start;
+            start->prev=node;
+            current=node;
+        }
+    }
+}
+void insert()
+{
+    int loc;
+    node=(struct link *)malloc(sizeof(struct link));
+    cout<<"Enter the number ";
+    cin>>node->data;
+    cout<<"Enter the location where u wnat to insert ";
+    cin>>loc;
+    struct link *ptr=start;
+    current=ptr->next;
+    for(int i=1;i<=loc-2;i++)
+    {
+        ptr=ptr->next;
+        current=current->next;
+    }
+    ptr->next=node;
+    node->prev=ptr;
+    node->next=current;
+    current->prev=node;
+}
+    
+void display()
+{
+    struct link *ptr=start;
+    do
+    {
+        cout<<ptr->data<<" ";
+        ptr=ptr->next;
+        
+    }while(ptr!=start);
+}
+int main()
+{
+    create();
+    insert();
+    display();
+    return 0;
+}

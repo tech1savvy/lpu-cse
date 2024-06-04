@@ -1,0 +1,64 @@
+//Create n single Linked list and display
+#include <iostream>
+using namespace std;
+
+struct link
+{
+    int data;
+    struct link *next;
+};
+struct link *start[20],*current,*node;
+void create(link *&start)
+{
+    int n;
+    cout<<"How many nodes u want to create ";
+    cin>>n;
+    start=NULL;
+    cout<<"Enter all the elements ";
+    for(int i=0;i<n;i++)
+    {
+        node=new link();
+        cin>>node->data;
+        node->next=NULL;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+        }
+        else
+        {
+            current->next=node;
+            current=node;
+        }
+    }
+}
+
+void display(link *&ptr)
+{
+   while(ptr!=NULL)
+   {
+       cout<<ptr->data<<" ";
+       ptr=ptr->next;
+   }
+}
+int main()
+{
+    int n,i;
+    cout<<"how many link list you wnat to create :";
+    cin>>n;
+    for(i=1;i<=n;i++)
+    {
+        cout<<"Enter the "<<i<<"th linked list";
+        create(start[i]);
+    }
+    for(i=1;i<=n;i++)
+    {
+        cout<<"Elements of  "<<i<<"th linked list";
+        display(start[i]);
+    }
+    return 0; 
+}
+
+
+
+

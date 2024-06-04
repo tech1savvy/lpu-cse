@@ -1,0 +1,57 @@
+/******************************************************************************
+ WAP To accept 5 students rollno and mark .let max mark is 100.task is to print
+ all the roll numbers of the student who have secured more than 60% of the mark.
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+struct link
+{
+    int roll;
+    int mark;
+    struct link *next;
+};
+struct link *start=NULL;
+struct link *current;
+struct link *node;
+
+void create()
+{
+    cout<<"enter 5 students roll no and marks:"<<endl;
+    for(int i=0;i<5;i++)
+    {
+        node=(struct link *)malloc(sizeof(struct link));
+        cin>>node->roll;
+        cin>>node->mark;
+        node->next=NULL;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+        }
+        else
+        {
+            current->next=node;
+            current=node;
+        }
+        
+    }
+}
+void display()
+{
+    struct link *ptr=start;
+    while(ptr!=NULL)
+    {
+        if(ptr->mark>=60)
+        {
+            cout<<ptr->roll<<" ";
+        }
+        ptr=ptr->next;
+    }
+    
+}
+int main()
+{
+    create();
+    display();
+    return 0;
+}

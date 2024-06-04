@@ -1,0 +1,4 @@
+*.out
+
+.replit
+replit.nix

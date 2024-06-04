@@ -1,0 +1,64 @@
+/******************************************************************************
+WAP To accept 5 students name , roll and age .print the roll number and age
+of the students who are eligible for vote and count how many number
+of students are eligible for vote.
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+struct link
+{
+    char name[30];
+    int roll;
+    int age;
+    struct link *next;
+};
+struct link *start=NULL;
+struct link *current;
+struct link *node;
+
+void create()
+{
+    cout<<"enter 5 Employees id and salary:"<<endl;
+    for(int i=0;i<5;i++)
+    {
+        node=(struct link *)malloc(sizeof(struct link));
+        cin>>node->name;
+        cin>>node->roll;
+        cin>>node->age;
+        node->next=NULL;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+        }
+        else
+        {
+            current->next=node;
+            current=node;
+        }
+        
+    }
+}
+void display()
+{
+    struct link *ptr=start;
+    int ctr=0;
+    while(ptr!=NULL)
+    {
+        if(ptr->age>=18)
+        {
+            ctr++;
+            cout<<ptr->name<<" "<<ptr->roll<<endl;
+        }
+     
+       ptr=ptr->next;
+    }
+    cout<<"no of students elligible for Vote is: "<<ctr;
+    
+}
+int main()
+{
+    create();
+    display();
+    return 0;
+}

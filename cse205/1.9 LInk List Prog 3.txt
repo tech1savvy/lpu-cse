@@ -1,0 +1,57 @@
+/******************************************************************************
+ WAP To accept 5 employees id and basic sal .if DA is 20% and TA is 10% 
+calculate the gross sal of all employess and print the sum of gross sal.
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+struct link
+{
+    int id;
+    int sal;
+    struct link *next;
+};
+struct link *start=NULL;
+struct link *current;
+struct link *node;
+
+void create()
+{
+    cout<<"enter 5 Employees id and salary:"<<endl;
+    for(int i=0;i<5;i++)
+    {
+        node=(struct link *)malloc(sizeof(struct link));
+        cin>>node->id;
+        cin>>node->sal;
+        node->next=NULL;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+        }
+        else
+        {
+            current->next=node;
+            current=node;
+        }
+        
+    }
+}
+void display()
+{
+    struct link *ptr=start;
+    double gs;
+    double sum=0.0;
+    while(ptr!=NULL)
+    {
+       gs=ptr->sal + (ptr->sal*10/100) + (ptr->sal*20/100);   
+       sum=sum+gs;
+       ptr=ptr->next;
+    }
+    cout<<"\n Total salary :"<<sum;
+}
+int main()
+{
+    create();
+    display();
+    return 0;
+}

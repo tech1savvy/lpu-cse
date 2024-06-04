@@ -1,0 +1,71 @@
+/******************************************************************************
+WAP Create a link list and insert a number in perticular position
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+struct link
+{
+    int data;
+    struct link *next;
+};
+struct link *start=NULL;
+struct link *current;
+struct link *node;
+void create()
+{
+    int n,i;
+    cout<<"How many Nodes U want to create: ";
+    cin>>n;
+    cout<<"Enter the Elements :";
+    for(i=0;i<n;i++)
+    {
+        node=(struct link *)malloc(sizeof(struct link));
+        cin>>node->data;
+        node->next=NULL;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+        }
+        else
+        {
+            current->next=node;
+            current=node;
+        }
+    }
+}
+void insert()
+{
+    int po;
+    struct link *ptr=start;
+    current=start->next;
+    node=(struct link *)malloc(sizeof(struct link));
+    //node=new link();
+    cout<<"enter the no and po";
+    cin>>node->data;
+    cin>>po;
+   for(int i=1;i<=po-2;i++)
+    {
+        current=current->next;
+        ptr=ptr->next;
+    }
+    ptr->next=node;
+    node->next=current;
+   
+}
+void display()
+{
+    struct link *ptr=start;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data;
+        ptr=ptr->next;
+    }
+}
+int main()   
+{
+    create();
+    insert();
+    display();
+    return 0;
+}

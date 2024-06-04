@@ -1,0 +1,52 @@
+/******************************************************************************
+WAP Create a link list and display it
+*******************************************************************************/
+#include <iostream>
+#include<cstdlib>
+using namespace std;
+struct link
+{
+    int data;
+    struct link *next;
+};
+struct link *start=NULL;
+struct link *current;
+struct link *node;
+void create()
+{
+    char ch='y';
+    while(ch=='y')
+    {
+        node=(struct link *)malloc(sizeof(struct link));
+        cout<<"Enter the Element";
+        cin>>node->data;
+        node->next=NULL;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+        }
+        else
+        {
+            current->next=node;
+            current=node;
+        }
+        cout<<"wants to create another node(y/n) :";
+        cin>>ch;
+    }
+}
+void display()
+{
+    struct link *ptr=start;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data;
+        ptr=ptr->next;
+    }
+}
+int main()   
+{
+    create();
+    display();
+    return 0;
+}

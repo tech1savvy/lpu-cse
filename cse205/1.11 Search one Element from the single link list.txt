@@ -1,0 +1,66 @@
+/******************************************************************************
+WAP Search one Element from the link list. If Element is not there in the link list then dispaly "No Element Found"
+*******************************************************************************/
+#include <iostream>
+using namespace std;
+struct link
+{
+    int data;
+    struct link *next;
+};
+struct link *start=NULL;
+struct link *current;
+struct link *node;
+void create()
+{
+    int n,i;
+    cout<<"How many Nodes U want to create: ";
+    cin>>n;
+    cout<<"Enter the Elements :";
+    for(i=0;i<n;i++)
+    {
+        node=(struct link *)malloc(sizeof(struct link));
+        cin>>node->data;
+        node->next=NULL;
+        if(start==NULL)
+        {
+            start=node;
+            current=node;
+        }
+        else
+        {
+            current->next=node;
+            current=node;
+        }
+    }
+}
+void search()
+{
+    struct link *ptr=start;
+    int no,ctr=0;
+    cout<<"Enter the element to search :";
+    cin>>no;
+    while(ptr!=NULL)
+    {
+        
+        if(no==ptr->data)
+        {
+            cout<<"no present in location"<<ctr+1;
+            break;
+        }
+        ptr=ptr->next;
+        ctr++;
+        
+    }
+    if(ptr==NULL)
+    {
+        cout<<"no is not Present In the Link list";
+    }
+   
+}
+int main()   
+{
+    create();
+    search();
+    return 0;
+}
